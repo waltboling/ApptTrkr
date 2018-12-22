@@ -7,15 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E60740BE21CB73A300552041 /* ProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740BD21CB73A300552041 /* ProviderCell.swift */; };
+		E60740C021CBF36200552041 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740BF21CBF36200552041 /* ButtonExtensions.swift */; };
+		E60740C221CC010600552041 /* ProviderNotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C121CC010600552041 /* ProviderNotesCell.swift */; };
+		E60740C421CC0D1100552041 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C321CC0D1100552041 /* Provider.swift */; };
+		E60740C621CC0D1E00552041 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C521CC0D1E00552041 /* Appointment.swift */; };
+		E66B058F21CC9B1100E483E2 /* CalendarHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B058E21CC9B1100E483E2 /* CalendarHeaderCell.swift */; };
+		E66B059121CCAC5400E483E2 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B059021CCAC5400E483E2 /* CalendarCell.swift */; };
+		E66B059321CD689F00E483E2 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B059221CD689F00E483E2 /* ColorExtension.swift */; };
+		E66B059521CD79B800E483E2 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B059421CD79B800E483E2 /* CustomHeaderView.swift */; };
 		E6A24A7621C82A980048EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7521C82A980048EFD8 /* AppDelegate.swift */; };
 		E6A24A7821C82A980048EFD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7721C82A980048EFD8 /* ViewController.swift */; };
 		E6A24A7B21C82A980048EFD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A24A7921C82A980048EFD8 /* Main.storyboard */; };
 		E6A24A7E21C82A980048EFD8 /* ApptTrkr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7C21C82A980048EFD8 /* ApptTrkr.xcdatamodeld */; };
 		E6A24A8021C82A9C0048EFD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6A24A7F21C82A9C0048EFD8 /* Assets.xcassets */; };
 		E6A24A8321C82A9C0048EFD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A24A8121C82A9C0048EFD8 /* LaunchScreen.storyboard */; };
+		E6A24A8B21C833980048EFD8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A8A21C833980048EFD8 /* MainViewController.swift */; };
+		E6A24A8D21C833B00048EFD8 /* ProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A8C21C833B00048EFD8 /* ProviderViewController.swift */; };
+		E6A24A8F21C833E20048EFD8 /* ApptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A8E21C833E20048EFD8 /* ApptViewController.swift */; };
+		E6A24A9121C8344C0048EFD8 /* MasterCalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A9021C8344C0048EFD8 /* MasterCalViewController.swift */; };
+		E6A24A9321C852F80048EFD8 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A9221C852F80048EFD8 /* MainCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E60740BD21CB73A300552041 /* ProviderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCell.swift; sourceTree = "<group>"; };
+		E60740BF21CBF36200552041 /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
+		E60740C121CC010600552041 /* ProviderNotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderNotesCell.swift; sourceTree = "<group>"; };
+		E60740C321CC0D1100552041 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		E60740C521CC0D1E00552041 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		E66B058E21CC9B1100E483E2 /* CalendarHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderCell.swift; sourceTree = "<group>"; };
+		E66B059021CCAC5400E483E2 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		E66B059221CD689F00E483E2 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		E66B059421CD79B800E483E2 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		E6A24A7221C82A980048EFD8 /* ApptTrkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApptTrkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A24A7521C82A980048EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6A24A7721C82A980048EFD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +47,11 @@
 		E6A24A7F21C82A9C0048EFD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6A24A8221C82A9C0048EFD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6A24A8421C82A9C0048EFD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6A24A8A21C833980048EFD8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E6A24A8C21C833B00048EFD8 /* ProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderViewController.swift; sourceTree = "<group>"; };
+		E6A24A8E21C833E20048EFD8 /* ApptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApptViewController.swift; sourceTree = "<group>"; };
+		E6A24A9021C8344C0048EFD8 /* MasterCalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCalViewController.swift; sourceTree = "<group>"; };
+		E6A24A9221C852F80048EFD8 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +65,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E60740C721CC0D2300552041 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E60740C321CC0D1100552041 /* Provider.swift */,
+				E60740C521CC0D1E00552041 /* Appointment.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E60740C821CC0D3C00552041 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6A24A8A21C833980048EFD8 /* MainViewController.swift */,
+				E6A24A8E21C833E20048EFD8 /* ApptViewController.swift */,
+				E6A24A9021C8344C0048EFD8 /* MasterCalViewController.swift */,
+				E6A24A8C21C833B00048EFD8 /* ProviderViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E60740C921CC0D6100552041 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E66B059221CD689F00E483E2 /* ColorExtension.swift */,
+				E60740BF21CBF36200552041 /* ButtonExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E6A24A6921C82A980048EFD8 = {
 			isa = PBXGroup;
 			children = (
@@ -59,12 +116,29 @@
 				E6A24A7521C82A980048EFD8 /* AppDelegate.swift */,
 				E6A24A7721C82A980048EFD8 /* ViewController.swift */,
 				E6A24A7921C82A980048EFD8 /* Main.storyboard */,
+				E60740C921CC0D6100552041 /* Extensions */,
+				E60740C821CC0D3C00552041 /* ViewControllers */,
+				E60740C721CC0D2300552041 /* Model */,
+				E6A24A9421C852FF0048EFD8 /* CustomCells */,
 				E6A24A7F21C82A9C0048EFD8 /* Assets.xcassets */,
 				E6A24A8121C82A9C0048EFD8 /* LaunchScreen.storyboard */,
 				E6A24A8421C82A9C0048EFD8 /* Info.plist */,
 				E6A24A7C21C82A980048EFD8 /* ApptTrkr.xcdatamodeld */,
 			);
 			path = ApptTrkr;
+			sourceTree = "<group>";
+		};
+		E6A24A9421C852FF0048EFD8 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				E6A24A9221C852F80048EFD8 /* MainCell.swift */,
+				E66B058E21CC9B1100E483E2 /* CalendarHeaderCell.swift */,
+				E60740C121CC010600552041 /* ProviderNotesCell.swift */,
+				E60740BD21CB73A300552041 /* ProviderCell.swift */,
+				E66B059021CCAC5400E483E2 /* CalendarCell.swift */,
+				E66B059421CD79B800E483E2 /* CustomHeaderView.swift */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +212,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E60740C621CC0D1E00552041 /* Appointment.swift in Sources */,
+				E60740BE21CB73A300552041 /* ProviderCell.swift in Sources */,
 				E6A24A7821C82A980048EFD8 /* ViewController.swift in Sources */,
+				E6A24A9121C8344C0048EFD8 /* MasterCalViewController.swift in Sources */,
+				E66B059121CCAC5400E483E2 /* CalendarCell.swift in Sources */,
 				E6A24A7621C82A980048EFD8 /* AppDelegate.swift in Sources */,
+				E66B059521CD79B800E483E2 /* CustomHeaderView.swift in Sources */,
+				E60740C421CC0D1100552041 /* Provider.swift in Sources */,
 				E6A24A7E21C82A980048EFD8 /* ApptTrkr.xcdatamodeld in Sources */,
+				E60740C021CBF36200552041 /* ButtonExtensions.swift in Sources */,
+				E66B058F21CC9B1100E483E2 /* CalendarHeaderCell.swift in Sources */,
+				E6A24A8F21C833E20048EFD8 /* ApptViewController.swift in Sources */,
+				E66B059321CD689F00E483E2 /* ColorExtension.swift in Sources */,
+				E6A24A8D21C833B00048EFD8 /* ProviderViewController.swift in Sources */,
+				E60740C221CC010600552041 /* ProviderNotesCell.swift in Sources */,
+				E6A24A9321C852F80048EFD8 /* MainCell.swift in Sources */,
+				E6A24A8B21C833980048EFD8 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
