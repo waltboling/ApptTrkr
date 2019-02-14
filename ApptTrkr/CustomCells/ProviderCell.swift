@@ -9,6 +9,7 @@
 import UIKit
 
 //need to use this class to build out skeleton for static cells in providerVC. Here build layout of cell and in VC fill in the contents (cellForRowAt).
+
 class ProviderCell: UITableViewCell {
     var headingLabel: UILabel = {
         var label = UILabel()
@@ -18,12 +19,21 @@ class ProviderCell: UITableViewCell {
         return label
     }()
     
-    var infoField: UITextField = {
-        var textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.font = UIFont.systemFont(ofSize: 17)
-        return textField
+    var infoField: UILabel = {
+        var label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 17)
+        label.textColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
+        return label
     }()
+    
+    /*var phoneField: Formattedlabel = {
+        var label = Formattedlabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 17)
+        return label
+    }()*/
+
 
     var cellIcon: UIButton = {
         var icon = UIButton()
@@ -31,6 +41,8 @@ class ProviderCell: UITableViewCell {
         icon.contentMode = .scaleAspectFit
         return icon
     }()
+    
+    var isInfoField = true
     
     /*func layoutButtons(image: UIImage, button: UIButton) {
         
@@ -49,6 +61,11 @@ class ProviderCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(headingLabel)
         self.addSubview(infoField)
+        /*if isInfoField{
+            self.addSubview(infoField)
+        } else {
+            self.addSubview(phoneField)
+        }*/
         self.addSubview(cellIcon)
     }
     
@@ -57,7 +74,8 @@ class ProviderCell: UITableViewCell {
         let spacingConstantMed: CGFloat = 20.0
         let spacingConstantLg: CGFloat = 30.0
         
-        cellIcon.customize(color: UIColor(red: 0.38, green: 0.584, blue: 0.847, alpha: 1.0))
+        cellIcon.customizeBGImage(color: UIColor.ATColors.midBlue)
+        //alt blue -> (color: UIColor(red: 0.38, green: 0.584, blue: 0.847, alpha: 1.0))
         
         cellIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: spacingConstantSmall).isActive = true
         cellIcon.rightAnchor.constraint(equalTo: headingLabel.leftAnchor, constant: -spacingConstantMed).isActive = true
@@ -68,7 +86,12 @@ class ProviderCell: UITableViewCell {
         headingLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: spacingConstantLg).isActive = true
         headingLabel.bottomAnchor.constraint(equalTo: infoField.topAnchor, constant: -5).isActive = true
         
-        infoField.leftAnchor.constraint(equalTo: headingLabel.leftAnchor).isActive = true
+         infoField.leftAnchor.constraint(equalTo: headingLabel.leftAnchor).isActive = true
+        /*if isInfoField {
+            infoField.leftAnchor.constraint(equalTo: headingLabel.leftAnchor).isActive = true
+        } else {
+            phoneField.leftAnchor.constraint(equalTo: headingLabel.leftAnchor).isActive = true
+        }*/
     }
     
     required init?(coder aDecoder: NSCoder) {

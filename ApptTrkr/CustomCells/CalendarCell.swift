@@ -13,16 +13,16 @@ class CalendarCell: UITableViewCell {
     var providerName: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = UIColor.darkGray
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.ATColors.midBlue
         return label
     }()
     
     var appointmentTitle: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.textColor = UIColor.darkGray
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = UIColor.ATColors.midBlue
 
         return label
     }()
@@ -30,8 +30,8 @@ class CalendarCell: UITableViewCell {
     var dateLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 20)
-        label.textColor = UIColor.darkGray
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = UIColor.ATColors.midBlue
         return label
         
     }()
@@ -47,7 +47,7 @@ class CalendarCell: UITableViewCell {
         dateLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
         dateLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        appointmentTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 25).isActive = true
+        appointmentTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         appointmentTitle.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
         appointmentTitle.bottomAnchor.constraint(equalTo: providerName.topAnchor, constant: -5).isActive = true
         

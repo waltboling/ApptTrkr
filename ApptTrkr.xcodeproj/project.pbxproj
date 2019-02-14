@@ -7,19 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		302E73FB6CE621D0AD288690 /* Pods_ApptTrkr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AD6705A0DCE99357FCF425 /* Pods_ApptTrkr.framework */; };
 		E60740BE21CB73A300552041 /* ProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740BD21CB73A300552041 /* ProviderCell.swift */; };
 		E60740C021CBF36200552041 /* ButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740BF21CBF36200552041 /* ButtonExtensions.swift */; };
 		E60740C221CC010600552041 /* ProviderNotesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C121CC010600552041 /* ProviderNotesCell.swift */; };
-		E60740C421CC0D1100552041 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C321CC0D1100552041 /* Provider.swift */; };
+		E60740C421CC0D1100552041 /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C321CC0D1100552041 /* ServiceProvider.swift */; };
 		E60740C621CC0D1E00552041 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60740C521CC0D1E00552041 /* Appointment.swift */; };
+		E60EEC2222150DCF001AD004 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1022150DA7001AD004 /* Lato-BlackItalic.ttf */; };
+		E60EEC2322150DCF001AD004 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1122150DA9001AD004 /* Lato-Semibold.ttf */; };
+		E60EEC2422150DCF001AD004 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1222150DAC001AD004 /* Lato-BoldItalic.ttf */; };
+		E60EEC2522150DCF001AD004 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1322150DAE001AD004 /* Lato-Thin.ttf */; };
+		E60EEC2622150DCF001AD004 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1422150DAF001AD004 /* Lato-Bold.ttf */; };
+		E60EEC2722150DCF001AD004 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1522150DB2001AD004 /* Lato-Medium.ttf */; };
+		E60EEC2822150DCF001AD004 /* Lato-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1622150DB6001AD004 /* Lato-SemiboldItalic.ttf */; };
+		E60EEC2922150DCF001AD004 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1722150DB9001AD004 /* Lato-Italic.ttf */; };
+		E60EEC2A22150DCF001AD004 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1822150DBC001AD004 /* Lato-Heavy.ttf */; };
+		E60EEC2B22150DCF001AD004 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1922150DC0001AD004 /* Lato-ThinItalic.ttf */; };
+		E60EEC2C22150DCF001AD004 /* Lato-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1A22150DC3001AD004 /* Lato-MediumItalic.ttf */; };
+		E60EEC2D22150DCF001AD004 /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1B22150DC5001AD004 /* Lato-Hairline.ttf */; };
+		E60EEC2E22150DCF001AD004 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1C22150DC6001AD004 /* Lato-Regular.ttf */; };
+		E60EEC2F22150DCF001AD004 /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1D22150DC8001AD004 /* Lato-LightItalic.ttf */; };
+		E60EEC3022150DCF001AD004 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1E22150DCA001AD004 /* Lato-Black.ttf */; };
+		E60EEC3122150DCF001AD004 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC1F22150DCC001AD004 /* Lato-Light.ttf */; };
+		E60EEC3222150DCF001AD004 /* Lato-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC2022150DCD001AD004 /* Lato-HeavyItalic.ttf */; };
+		E60EEC3322150DCF001AD004 /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E60EEC2122150DCF001AD004 /* Lato-HairlineItalic.ttf */; };
 		E66B058F21CC9B1100E483E2 /* CalendarHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B058E21CC9B1100E483E2 /* CalendarHeaderCell.swift */; };
 		E66B059121CCAC5400E483E2 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B059021CCAC5400E483E2 /* CalendarCell.swift */; };
 		E66B059321CD689F00E483E2 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B059221CD689F00E483E2 /* ColorExtension.swift */; };
 		E66B059521CD79B800E483E2 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66B059421CD79B800E483E2 /* CustomHeaderView.swift */; };
+		E6876B042212B0D400122E00 /* ApptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6876B032212B0D400122E00 /* ApptTableViewCell.swift */; };
+		E6876B062212B7AC00122E00 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6876B052212B7AC00122E00 /* NoteViewController.swift */; };
+		E6876B082213E8DC00122E00 /* EditProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6876B072213E8DC00122E00 /* EditProviderCell.swift */; };
+		E6876B0A221504F200122E00 /* MODERNE SANS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6876B09221504ED00122E00 /* MODERNE SANS.ttf */; };
+		E6876B0C2215050F00122E00 /* Lovelo-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = E6876B0B2215050E00122E00 /* Lovelo-Black.otf */; };
+		E6927E0221F175E20050EE94 /* FormattedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6927E0121F175E10050EE94 /* FormattedTextField.swift */; };
+		E6927E0421F2411E0050EE94 /* InputFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6927E0321F2411E0050EE94 /* InputFieldExtensions.swift */; };
+		E69A266E21E7E0FE00DB7734 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A266D21E7E0FE00DB7734 /* AuthenticationManager.swift */; };
+		E69A267021E84BA300DB7734 /* VCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E69A266F21E84BA300DB7734 /* VCExtensions.swift */; };
 		E6A24A7621C82A980048EFD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7521C82A980048EFD8 /* AppDelegate.swift */; };
-		E6A24A7821C82A980048EFD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7721C82A980048EFD8 /* ViewController.swift */; };
+		E6A24A7821C82A980048EFD8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7721C82A980048EFD8 /* SignInViewController.swift */; };
 		E6A24A7B21C82A980048EFD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A24A7921C82A980048EFD8 /* Main.storyboard */; };
-		E6A24A7E21C82A980048EFD8 /* ApptTrkr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A7C21C82A980048EFD8 /* ApptTrkr.xcdatamodeld */; };
 		E6A24A8021C82A9C0048EFD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6A24A7F21C82A9C0048EFD8 /* Assets.xcassets */; };
 		E6A24A8321C82A9C0048EFD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6A24A8121C82A9C0048EFD8 /* LaunchScreen.storyboard */; };
 		E6A24A8B21C833980048EFD8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A8A21C833980048EFD8 /* MainViewController.swift */; };
@@ -27,23 +54,55 @@
 		E6A24A8F21C833E20048EFD8 /* ApptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A8E21C833E20048EFD8 /* ApptViewController.swift */; };
 		E6A24A9121C8344C0048EFD8 /* MasterCalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A9021C8344C0048EFD8 /* MasterCalViewController.swift */; };
 		E6A24A9321C852F80048EFD8 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A24A9221C852F80048EFD8 /* MainCell.swift */; };
+		E6C9952D21ED5220008A9812 /* NewProviderSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9952C21ED5220008A9812 /* NewProviderSheetVC.swift */; };
+		E6C9952F21EE9BE5008A9812 /* NewApptSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C9952E21EE9BE5008A9812 /* NewApptSheetVC.swift */; };
+		E6E6C89921E6F5E2009B995D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E6E6C89821E6F5E1009B995D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3509F58297FF6F616B3D58C5 /* Pods-ApptTrkr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApptTrkr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ApptTrkr/Pods-ApptTrkr.debug.xcconfig"; sourceTree = "<group>"; };
+		92392CCAC5EBD17E65CBCFED /* Pods-ApptTrkr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ApptTrkr.release.xcconfig"; path = "Pods/Target Support Files/Pods-ApptTrkr/Pods-ApptTrkr.release.xcconfig"; sourceTree = "<group>"; };
+		B7AD6705A0DCE99357FCF425 /* Pods_ApptTrkr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ApptTrkr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E60740BD21CB73A300552041 /* ProviderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderCell.swift; sourceTree = "<group>"; };
 		E60740BF21CBF36200552041 /* ButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtensions.swift; sourceTree = "<group>"; };
 		E60740C121CC010600552041 /* ProviderNotesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderNotesCell.swift; sourceTree = "<group>"; };
-		E60740C321CC0D1100552041 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		E60740C321CC0D1100552041 /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		E60740C521CC0D1E00552041 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		E60EEC1022150DA7001AD004 /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC1122150DA9001AD004 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
+		E60EEC1222150DAC001AD004 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC1322150DAE001AD004 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
+		E60EEC1422150DAF001AD004 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		E60EEC1522150DB2001AD004 /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
+		E60EEC1622150DB6001AD004 /* Lato-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC1722150DB9001AD004 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
+		E60EEC1822150DBC001AD004 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		E60EEC1922150DC0001AD004 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC1A22150DC3001AD004 /* Lato-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-MediumItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC1B22150DC5001AD004 /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hairline.ttf"; sourceTree = "<group>"; };
+		E60EEC1C22150DC6001AD004 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		E60EEC1D22150DC8001AD004 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LightItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC1E22150DCA001AD004 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		E60EEC1F22150DCC001AD004 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		E60EEC2022150DCD001AD004 /* Lato-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		E60EEC2122150DCF001AD004 /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
 		E66B058E21CC9B1100E483E2 /* CalendarHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderCell.swift; sourceTree = "<group>"; };
 		E66B059021CCAC5400E483E2 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		E66B059221CD689F00E483E2 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		E66B059421CD79B800E483E2 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		E6876B032212B0D400122E00 /* ApptTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApptTableViewCell.swift; sourceTree = "<group>"; };
+		E6876B052212B7AC00122E00 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		E6876B072213E8DC00122E00 /* EditProviderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProviderCell.swift; sourceTree = "<group>"; };
+		E6876B09221504ED00122E00 /* MODERNE SANS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MODERNE SANS.ttf"; path = "../MODERNE SANS.ttf"; sourceTree = "<group>"; };
+		E6876B0B2215050E00122E00 /* Lovelo-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lovelo-Black.otf"; sourceTree = "<group>"; };
+		E6927E0121F175E10050EE94 /* FormattedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedTextField.swift; sourceTree = "<group>"; };
+		E6927E0321F2411E0050EE94 /* InputFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldExtensions.swift; sourceTree = "<group>"; };
+		E69A266D21E7E0FE00DB7734 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		E69A266F21E84BA300DB7734 /* VCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCExtensions.swift; sourceTree = "<group>"; };
 		E6A24A7221C82A980048EFD8 /* ApptTrkr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApptTrkr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A24A7521C82A980048EFD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6A24A7721C82A980048EFD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6A24A7721C82A980048EFD8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E6A24A7A21C82A980048EFD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E6A24A7D21C82A980048EFD8 /* ApptTrkr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ApptTrkr.xcdatamodel; sourceTree = "<group>"; };
 		E6A24A7F21C82A9C0048EFD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6A24A8221C82A9C0048EFD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6A24A8421C82A9C0048EFD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +111,9 @@
 		E6A24A8E21C833E20048EFD8 /* ApptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApptViewController.swift; sourceTree = "<group>"; };
 		E6A24A9021C8344C0048EFD8 /* MasterCalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterCalViewController.swift; sourceTree = "<group>"; };
 		E6A24A9221C852F80048EFD8 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		E6C9952C21ED5220008A9812 /* NewProviderSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProviderSheetVC.swift; sourceTree = "<group>"; };
+		E6C9952E21EE9BE5008A9812 /* NewApptSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewApptSheetVC.swift; sourceTree = "<group>"; };
+		E6E6C89821E6F5E1009B995D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,16 +121,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				302E73FB6CE621D0AD288690 /* Pods_ApptTrkr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		937A114A5C7946C76EE682EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3509F58297FF6F616B3D58C5 /* Pods-ApptTrkr.debug.xcconfig */,
+				92392CCAC5EBD17E65CBCFED /* Pods-ApptTrkr.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		99282CCEE94B15112BC99BCC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B7AD6705A0DCE99357FCF425 /* Pods_ApptTrkr.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E60740C721CC0D2300552041 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E60740C321CC0D1100552041 /* Provider.swift */,
+				E6927E0121F175E10050EE94 /* FormattedTextField.swift */,
+				E60740C321CC0D1100552041 /* ServiceProvider.swift */,
 				E60740C521CC0D1E00552041 /* Appointment.swift */,
 			);
 			path = Model;
@@ -77,8 +158,11 @@
 		E60740C821CC0D3C00552041 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E6876B052212B7AC00122E00 /* NoteViewController.swift */,
 				E6A24A8A21C833980048EFD8 /* MainViewController.swift */,
+				E6C9952C21ED5220008A9812 /* NewProviderSheetVC.swift */,
 				E6A24A8E21C833E20048EFD8 /* ApptViewController.swift */,
+				E6C9952E21EE9BE5008A9812 /* NewApptSheetVC.swift */,
 				E6A24A9021C8344C0048EFD8 /* MasterCalViewController.swift */,
 				E6A24A8C21C833B00048EFD8 /* ProviderViewController.swift */,
 			);
@@ -88,10 +172,39 @@
 		E60740C921CC0D6100552041 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E69A266F21E84BA300DB7734 /* VCExtensions.swift */,
 				E66B059221CD689F00E483E2 /* ColorExtension.swift */,
 				E60740BF21CBF36200552041 /* ButtonExtensions.swift */,
+				E6927E0321F2411E0050EE94 /* InputFieldExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E6876B0D2215051700122E00 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E60EEC1E22150DCA001AD004 /* Lato-Black.ttf */,
+				E60EEC1022150DA7001AD004 /* Lato-BlackItalic.ttf */,
+				E60EEC1422150DAF001AD004 /* Lato-Bold.ttf */,
+				E60EEC1222150DAC001AD004 /* Lato-BoldItalic.ttf */,
+				E60EEC1B22150DC5001AD004 /* Lato-Hairline.ttf */,
+				E60EEC2122150DCF001AD004 /* Lato-HairlineItalic.ttf */,
+				E60EEC1822150DBC001AD004 /* Lato-Heavy.ttf */,
+				E60EEC2022150DCD001AD004 /* Lato-HeavyItalic.ttf */,
+				E60EEC1722150DB9001AD004 /* Lato-Italic.ttf */,
+				E60EEC1F22150DCC001AD004 /* Lato-Light.ttf */,
+				E60EEC1D22150DC8001AD004 /* Lato-LightItalic.ttf */,
+				E60EEC1522150DB2001AD004 /* Lato-Medium.ttf */,
+				E60EEC1A22150DC3001AD004 /* Lato-MediumItalic.ttf */,
+				E60EEC1C22150DC6001AD004 /* Lato-Regular.ttf */,
+				E60EEC1122150DA9001AD004 /* Lato-Semibold.ttf */,
+				E60EEC1622150DB6001AD004 /* Lato-SemiboldItalic.ttf */,
+				E60EEC1322150DAE001AD004 /* Lato-Thin.ttf */,
+				E60EEC1922150DC0001AD004 /* Lato-ThinItalic.ttf */,
+				E6876B09221504ED00122E00 /* MODERNE SANS.ttf */,
+				E6876B0B2215050E00122E00 /* Lovelo-Black.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		E6A24A6921C82A980048EFD8 = {
@@ -99,6 +212,8 @@
 			children = (
 				E6A24A7421C82A980048EFD8 /* ApptTrkr */,
 				E6A24A7321C82A980048EFD8 /* Products */,
+				937A114A5C7946C76EE682EA /* Pods */,
+				99282CCEE94B15112BC99BCC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,8 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				E6A24A7521C82A980048EFD8 /* AppDelegate.swift */,
-				E6A24A7721C82A980048EFD8 /* ViewController.swift */,
+				E6A24A7721C82A980048EFD8 /* SignInViewController.swift */,
+				E69A266D21E7E0FE00DB7734 /* AuthenticationManager.swift */,
 				E6A24A7921C82A980048EFD8 /* Main.storyboard */,
+				E6876B0D2215051700122E00 /* Fonts */,
 				E60740C921CC0D6100552041 /* Extensions */,
 				E60740C821CC0D3C00552041 /* ViewControllers */,
 				E60740C721CC0D2300552041 /* Model */,
@@ -123,7 +240,7 @@
 				E6A24A7F21C82A9C0048EFD8 /* Assets.xcassets */,
 				E6A24A8121C82A9C0048EFD8 /* LaunchScreen.storyboard */,
 				E6A24A8421C82A9C0048EFD8 /* Info.plist */,
-				E6A24A7C21C82A980048EFD8 /* ApptTrkr.xcdatamodeld */,
+				E6E6C89821E6F5E1009B995D /* GoogleService-Info.plist */,
 			);
 			path = ApptTrkr;
 			sourceTree = "<group>";
@@ -132,11 +249,13 @@
 			isa = PBXGroup;
 			children = (
 				E6A24A9221C852F80048EFD8 /* MainCell.swift */,
+				E6876B032212B0D400122E00 /* ApptTableViewCell.swift */,
 				E66B058E21CC9B1100E483E2 /* CalendarHeaderCell.swift */,
 				E60740C121CC010600552041 /* ProviderNotesCell.swift */,
 				E60740BD21CB73A300552041 /* ProviderCell.swift */,
 				E66B059021CCAC5400E483E2 /* CalendarCell.swift */,
 				E66B059421CD79B800E483E2 /* CustomHeaderView.swift */,
+				E6876B072213E8DC00122E00 /* EditProviderCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -148,9 +267,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6A24A8721C82A9C0048EFD8 /* Build configuration list for PBXNativeTarget "ApptTrkr" */;
 			buildPhases = (
+				AD0DC46F9A3300B8180053C5 /* [CP] Check Pods Manifest.lock */,
 				E6A24A6E21C82A980048EFD8 /* Sources */,
 				E6A24A6F21C82A980048EFD8 /* Frameworks */,
 				E6A24A7021C82A980048EFD8 /* Resources */,
+				6C427AD5DEEAF42E324CCA5D /* [CP] Embed Pods Frameworks */,
+				5875BA902572B1198FA8F1C0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,36 +321,166 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E60EEC2A22150DCF001AD004 /* Lato-Heavy.ttf in Resources */,
+				E60EEC2622150DCF001AD004 /* Lato-Bold.ttf in Resources */,
+				E60EEC3322150DCF001AD004 /* Lato-HairlineItalic.ttf in Resources */,
+				E60EEC2722150DCF001AD004 /* Lato-Medium.ttf in Resources */,
+				E60EEC3122150DCF001AD004 /* Lato-Light.ttf in Resources */,
+				E60EEC2E22150DCF001AD004 /* Lato-Regular.ttf in Resources */,
 				E6A24A8321C82A9C0048EFD8 /* LaunchScreen.storyboard in Resources */,
+				E60EEC2322150DCF001AD004 /* Lato-Semibold.ttf in Resources */,
+				E60EEC2B22150DCF001AD004 /* Lato-ThinItalic.ttf in Resources */,
+				E60EEC3022150DCF001AD004 /* Lato-Black.ttf in Resources */,
+				E60EEC3222150DCF001AD004 /* Lato-HeavyItalic.ttf in Resources */,
+				E60EEC2C22150DCF001AD004 /* Lato-MediumItalic.ttf in Resources */,
 				E6A24A8021C82A9C0048EFD8 /* Assets.xcassets in Resources */,
+				E60EEC2422150DCF001AD004 /* Lato-BoldItalic.ttf in Resources */,
+				E60EEC2222150DCF001AD004 /* Lato-BlackItalic.ttf in Resources */,
+				E60EEC2F22150DCF001AD004 /* Lato-LightItalic.ttf in Resources */,
 				E6A24A7B21C82A980048EFD8 /* Main.storyboard in Resources */,
+				E60EEC2922150DCF001AD004 /* Lato-Italic.ttf in Resources */,
+				E6876B0A221504F200122E00 /* MODERNE SANS.ttf in Resources */,
+				E60EEC2522150DCF001AD004 /* Lato-Thin.ttf in Resources */,
+				E60EEC2D22150DCF001AD004 /* Lato-Hairline.ttf in Resources */,
+				E6876B0C2215050F00122E00 /* Lovelo-Black.otf in Resources */,
+				E60EEC2822150DCF001AD004 /* Lato-SemiboldItalic.ttf in Resources */,
+				E6E6C89921E6F5E2009B995D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5875BA902572B1198FA8F1C0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ApptTrkr/Pods-ApptTrkr-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAnonymousAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseEmailAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseFacebookAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseGoogleAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebasePhoneAuthUI.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseTwitterAuthUI.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAnonymousAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseEmailAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseFacebookAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseGoogleAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebasePhoneAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseTwitterAuthUI.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApptTrkr/Pods-ApptTrkr-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C427AD5DEEAF42E324CCA5D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ApptTrkr/Pods-ApptTrkr-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ApptTrkr/Pods-ApptTrkr-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD0DC46F9A3300B8180053C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ApptTrkr-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E6A24A6E21C82A980048EFD8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6876B062212B7AC00122E00 /* NoteViewController.swift in Sources */,
 				E60740C621CC0D1E00552041 /* Appointment.swift in Sources */,
 				E60740BE21CB73A300552041 /* ProviderCell.swift in Sources */,
-				E6A24A7821C82A980048EFD8 /* ViewController.swift in Sources */,
+				E6A24A7821C82A980048EFD8 /* SignInViewController.swift in Sources */,
+				E69A266E21E7E0FE00DB7734 /* AuthenticationManager.swift in Sources */,
 				E6A24A9121C8344C0048EFD8 /* MasterCalViewController.swift in Sources */,
 				E66B059121CCAC5400E483E2 /* CalendarCell.swift in Sources */,
 				E6A24A7621C82A980048EFD8 /* AppDelegate.swift in Sources */,
 				E66B059521CD79B800E483E2 /* CustomHeaderView.swift in Sources */,
-				E60740C421CC0D1100552041 /* Provider.swift in Sources */,
-				E6A24A7E21C82A980048EFD8 /* ApptTrkr.xcdatamodeld in Sources */,
+				E60740C421CC0D1100552041 /* ServiceProvider.swift in Sources */,
 				E60740C021CBF36200552041 /* ButtonExtensions.swift in Sources */,
 				E66B058F21CC9B1100E483E2 /* CalendarHeaderCell.swift in Sources */,
+				E6876B042212B0D400122E00 /* ApptTableViewCell.swift in Sources */,
+				E6927E0421F2411E0050EE94 /* InputFieldExtensions.swift in Sources */,
 				E6A24A8F21C833E20048EFD8 /* ApptViewController.swift in Sources */,
+				E6C9952F21EE9BE5008A9812 /* NewApptSheetVC.swift in Sources */,
 				E66B059321CD689F00E483E2 /* ColorExtension.swift in Sources */,
 				E6A24A8D21C833B00048EFD8 /* ProviderViewController.swift in Sources */,
+				E6927E0221F175E20050EE94 /* FormattedTextField.swift in Sources */,
+				E69A267021E84BA300DB7734 /* VCExtensions.swift in Sources */,
 				E60740C221CC010600552041 /* ProviderNotesCell.swift in Sources */,
 				E6A24A9321C852F80048EFD8 /* MainCell.swift in Sources */,
 				E6A24A8B21C833980048EFD8 /* MainViewController.swift in Sources */,
+				E6876B082213E8DC00122E00 /* EditProviderCell.swift in Sources */,
+				E6C9952D21ED5220008A9812 /* NewProviderSheetVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +624,7 @@
 		};
 		E6A24A8821C82A9C0048EFD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3509F58297FF6F616B3D58C5 /* Pods-ApptTrkr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -390,6 +643,7 @@
 		};
 		E6A24A8921C82A9C0048EFD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92392CCAC5EBD17E65CBCFED /* Pods-ApptTrkr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -428,19 +682,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E6A24A7C21C82A980048EFD8 /* ApptTrkr.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E6A24A7D21C82A980048EFD8 /* ApptTrkr.xcdatamodel */,
-			);
-			currentVersion = E6A24A7D21C82A980048EFD8 /* ApptTrkr.xcdatamodel */;
-			path = ApptTrkr.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E6A24A6A21C82A980048EFD8 /* Project object */;
 }

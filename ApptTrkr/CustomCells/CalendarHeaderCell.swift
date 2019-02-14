@@ -23,42 +23,46 @@ class CalendarHeaderCell: UITableViewCell {
         imageView.image = UIImage(named: "abstractBlur")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.alpha = 0.8
+        imageView.alpha = 0.4
+        imageView.layer.cornerRadius = 5
         return imageView
     }()
     
     var overlayView: UIView = {
         var overlay = UIView()
         overlay.translatesAutoresizingMaskIntoConstraints = false
-        overlay.backgroundColor = UIColor.darkGray
-        overlay.alpha = 0.2
+        overlay.backgroundColor = UIColor.white
+        overlay.alpha = 1
         return overlay
     }()
     
     var colorOverlay: UIView = {
         var overlay = UIView()
         overlay.translatesAutoresizingMaskIntoConstraints = false
-        overlay.backgroundColor = UIColor.clear
-        overlay.alpha = 0.2
+        overlay.backgroundColor = UIColor(red: 0.912, green: 0.37, blue: 0.317, alpha: 1.0)
+        overlay.alpha = 0.9
+        overlay.layer.cornerRadius = 5
         return overlay
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+       
+        self.addSubview(overlayView)
         self.addSubview(headerBackground)
         self.addSubview(colorOverlay)
-        self.addSubview(overlayView)
         self.addSubview(headerLabel)
     }
     
     override func layoutSubviews() {
+        var headerOffset: CGFloat = 0
+        
         headerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         headerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
-        headerBackground.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        headerBackground.leftAnchor.constraint(equalTo: self.leftAnchor, constant: headerOffset).isActive = true
         headerBackground.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        headerBackground.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        headerBackground.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -headerOffset).isActive = true
         headerBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         overlayView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
@@ -67,9 +71,9 @@ class CalendarHeaderCell: UITableViewCell {
         overlayView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         
         colorOverlay.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        colorOverlay.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        colorOverlay.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -headerOffset).isActive = true
         colorOverlay.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        colorOverlay.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        colorOverlay.leftAnchor.constraint(equalTo: self.leftAnchor, constant: headerOffset).isActive = true
     }
     
     

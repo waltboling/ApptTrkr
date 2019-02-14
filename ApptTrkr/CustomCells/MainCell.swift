@@ -28,8 +28,8 @@ class MainCell: UITableViewCell {
     var providerNameLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17)
-        label.textColor = UIColor(red: 0.64, green: 0.1176, blue: 0.13, alpha: 1.0)
+        label.font = UIFont(name: "Lato-Medium", size: 18)
+        label.textColor = UIColor.ATColors.darkRed
         label.text = "Provider Name"
         return label
     }()
@@ -37,18 +37,37 @@ class MainCell: UITableViewCell {
     var providerTypeLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont(name: "Lato-Regular", size: 17)
         label.textColor = UIColor.lightGray
         label.text = "Provider Type"
         return label
     }()
     
+    var providerTapAction: (() -> Void)? = nil
+    var apptTapAction: (() -> Void)? = nil
+    
+    @objc func providerButtonTap() {
+        if let tapAction = providerTapAction {
+            providerTapAction!()
+        }
+    }
+    
+    @objc func apptButtonTap() {
+        if let tapAction = apptTapAction {
+            apptTapAction!()
+        }
+    }
+    
+    /*@objc func buttonAction() {
+        tapAction?(self)
+    }*/
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(providerBtn)
         self.addSubview(apptBtn)
         self.addSubview(providerNameLabel)
         self.addSubview(providerTypeLabel)
+        //apptBtn.addTarget(apptBtn, action: #selector(buttonAction), for: .touchUpInside)
         //self.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
     }
     
@@ -56,8 +75,8 @@ class MainCell: UITableViewCell {
         //let spacingConstantSmall: CGFloat = 15.0
         let spacingConstantMed: CGFloat = 25.0
         
-        apptBtn.customize(color: UIColor(red: 0.39, green: 0.49, blue: 0.575, alpha: 1.0))
-        providerBtn.customize(color: UIColor(red: 0.39, green: 0.49, blue: 0.575, alpha: 1.0))
+        apptBtn.customizeBGImage(color: UIColor.ATColors.midBlue)
+        providerBtn.customizeBGImage(color: UIColor.ATColors.midBlue)
         
         //layoutButtons(image: UIImage(named: "calendarIcon")!, button: apptBtn)
         //layoutButtons(image: UIImage(named: "providerIcon")!, button: providerBtn)
@@ -80,7 +99,7 @@ class MainCell: UITableViewCell {
         providerTypeLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: spacingConstantMed).isActive = true
         providerTypeLabel.topAnchor.constraint(equalTo: providerNameLabel.bottomAnchor, constant: 2).isActive = true
         providerTypeLabel.rightAnchor.constraint(equalTo: providerBtn.leftAnchor, constant: spacingConstantMed).isActive = true
-        providerTypeLabel.heightAnchor.constraint(equalToConstant: 18).isActive = true
+        providerTypeLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

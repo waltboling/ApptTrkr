@@ -13,15 +13,16 @@ class ProviderNotesCell: UITableViewCell {
     var headingLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont(name: "Lato-Medium", size: 15)
         label.textColor = UIColor(red: 0.64, green: 0.1176, blue: 0.13, alpha: 1.0)
         return label
     }()
     
-    var notesView: UITextView = {
+    var infoView: UITextView = {
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = UIFont.systemFont(ofSize: 17)
+        textView.font = UIFont(name: "Lato-Medium", size: 17)
+        textView.textColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0)
         return textView
     }()
     
@@ -34,9 +35,10 @@ class ProviderNotesCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.addSubview(headingLabel)
-        self.addSubview(notesView)
+        
+        self.addSubview(infoView)
         self.addSubview(cellIcon)
+        self.addSubview(headingLabel)
     }
     
     override func layoutSubviews() {
@@ -44,7 +46,7 @@ class ProviderNotesCell: UITableViewCell {
         let spacingConstantMed: CGFloat = 20.0
         let spacingConstantLg: CGFloat = 30.0
         
-        cellIcon.customize(color: UIColor(red: 0.38, green: 0.584, blue: 0.847, alpha: 1.0))
+        cellIcon.customizeBGImage(color: UIColor.ATColors.midBlue)
         
         cellIcon.topAnchor.constraint(equalTo: self.topAnchor, constant: spacingConstantSmall).isActive = true
         cellIcon.rightAnchor.constraint(equalTo: headingLabel.leftAnchor, constant: -spacingConstantMed).isActive = true
@@ -52,11 +54,14 @@ class ProviderNotesCell: UITableViewCell {
         cellIcon.leftAnchor.constraint(equalTo: self.leftAnchor, constant: spacingConstantMed).isActive = true
         cellIcon.widthAnchor.constraint(equalTo: self.heightAnchor, constant: -70).isActive = true
         
-        headingLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: spacingConstantLg).isActive = true
-        headingLabel.bottomAnchor.constraint(equalTo: notesView.topAnchor, constant: -5).isActive = true
+        headingLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 30).isActive = true
+        //headingLabel.bottomAnchor.constraint(equalTo: infoView.topAnchor, constant: -5).isActive = true
         
-        notesView.leftAnchor.constraint(equalTo: headingLabel.leftAnchor).isActive = true
-        notesView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -spacingConstantLg)
+        infoView.topAnchor.constraint(equalTo: headingLabel.bottomAnchor, constant: 5).isActive = true
+        infoView.leftAnchor.constraint(equalTo: headingLabel.leftAnchor, constant: -3).isActive = true
+        infoView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -spacingConstantLg).isActive = true
+        infoView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2).isActive = true
+        //infoView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -5).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
