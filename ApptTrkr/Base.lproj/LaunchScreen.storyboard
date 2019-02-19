@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApptTrkrBackgroundGraphic" translatesAutoresizingMaskIntoConstraints="NO" id="pN2-L0-OCO">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ApptTrkrLogo(Solo)" translatesAutoresizingMaskIntoConstraints="NO" id="Yel-11-jXc">
                                 <rect key="frame" x="40" y="240" width="295" height="167"/>
@@ -26,9 +26,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="pN2-L0-OCO" secondAttribute="bottom" id="0Mh-We-Gia"/>
                             <constraint firstItem="Yel-11-jXc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="220" id="NOB-1q-WlX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pN2-L0-OCO" secondAttribute="bottom" id="Uqj-Dr-uMr"/>
-                            <constraint firstItem="pN2-L0-OCO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZxS-bx-AjX"/>
+                            <constraint firstItem="pN2-L0-OCO" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="UNP-da-vCP"/>
                             <constraint firstItem="pN2-L0-OCO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="abI-oT-h5n"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Yel-11-jXc" secondAttribute="bottom" constant="260" id="bOb-Gq-Sxs"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pN2-L0-OCO" secondAttribute="trailing" id="fWO-nf-Wbf"/>

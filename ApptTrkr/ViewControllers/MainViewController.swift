@@ -25,10 +25,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     //var imageView = UIImageView()
     let ref = Database.database().reference()
     var indexTracker: Int?
-    
+    var passedUID: String?
+    //var passedUserEmail: String?
+    var userDefaults = UserDefaults()
     
     override func viewWillAppear(_ animated: Bool) {
-        ref.child("service-provider").observe(.value, with: { snapshot in
+        let userRef = ref.child("users").child(passedUID!)
+        userRef.child("service-provider").observe(.value, with: { snapshot in
             var newProviders: [ServiceProvider] = []
             var newProviderKeys: [String] = []
 
@@ -49,6 +52,19 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        passedUID = userDefaults.value(forKey: "uid") as? String
+        print(passedUID)
+        //let provID = Auth.auth().currentUser?.providerID
+       // print(passedUserEmail)
+       // print(passedUID)
+        //so - the data is passing correctly but the problem is that the user cant write into the database yet and permission is denied when trying to create the users node
+        /*let usersReference = ref.child("users").childByAutoId()
+        let userInfo = [
+            "userEmail": passedUserEmail,
+            "uid": passedUID
+        ]
+        print(userInfo)
+        usersReference.setValue(userInfo)*/
         
         mainTableView.allowsSelection = false
         mainTableView.contentInset = UIEdgeInsets(top: ApptTrkrLogoView.bounds.height, left: 0, bottom: 0, right: 0)
@@ -83,25 +99,42 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
         present(viewController, animated: true, completion:nil)
     }
     
+    //code to log out of FB with correct provider. so far it WORKS!
     @objc func handleLogout() {
-        let signInVC = SignInViewController()
-        showAlert(title: "Logout", message: "Are you ready to end your session?", buttonString: "Logout")
-        print("signing out user")
-        GIDSignIn.sharedInstance()?.signOut()
-        //do i need to also sign out of Firebase or does GoogleSignIn handle that? (code for Firebase below)
-        /*let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            /*AuthenticationManager.sharedInstance.loggedIn = false
-            dismiss(animated: true, completion: nil)*/
-        } catch let signOutError as NSError {
-            print ("Error signing out: \(signOutError)")
-        }*/
-        
-        self.dismiss(animated: true, completion: nil) // seems to work fine
+        //let signInVC = SignInViewController()
+        //would like to show alert to make sure user wants to logout, but would need to make signout code the action performed by the alert button
+        //showAlert(title: "Logout", message: "Are you ready to end your session?", buttonString: "Logout")
+        let auth = Auth.auth()
+        let providerData = auth.currentUser?.providerData
 
+        for data in providerData! {
+            switch data.providerID {
+            case "google.com":
+                GIDSignIn.sharedInstance()?.signOut()
+                print("signing out google user")
+                do {
+                    try auth.signOut()
+                    print("signing google user out of FB")
+                    dismiss(animated: true, completion: nil)
+                } catch let signOutError as NSError {
+                    print ("Error signing out google user: \(signOutError)")
+                }
+                break
+            case "password":
+                do {
+                    try auth.signOut()
+                    print("signing password user out of FB")
+                    AuthenticationManager.sharedInstance.loggedIn = false
+                    dismiss(animated: true, completion: nil)
+                } catch let signOutError as NSError {
+                    print ("Error signing out password user: \(signOutError)")
+                }
+                break
+            default:
+                showAlert(title: "Oops!", message: "There was an error logging out", buttonString: "Ok")
+            }
+        }
     }
-    
 }
 
 extension MainViewController: UITableViewDelegate {

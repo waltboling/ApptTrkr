@@ -19,6 +19,7 @@ class ServiceProvider {
     var fax: String
     var notes: String
     var imageURL: String
+    
 
     init(name: String, type: String, website: String, phoneNumber: String, email: String, address: String, fax: String, notes: String, imageURL: String) {
         self.name = name

@@ -11,11 +11,12 @@ import Firebase
 
 class MasterCalViewController: UIViewController {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    var overlayColors = [UIColor.SeasonalColors.january, UIColor.SeasonalColors.february, UIColor.SeasonalColors.march, UIColor.SeasonalColors.april, UIColor.SeasonalColors.may, UIColor.SeasonalColors.june, UIColor.SeasonalColors.july, UIColor.SeasonalColors.august, UIColor.SeasonalColors.september, UIColor.SeasonalColors.october, UIColor.SeasonalColors.november, UIColor.SeasonalColors.december]
-    var year = 2018
+//    var overlayColors = [UIColor.SeasonalColors.january, UIColor.SeasonalColors.february, UIColor.SeasonalColors.march, UIColor.SeasonalColors.april, UIColor.SeasonalColors.may, UIColor.SeasonalColors.june, UIColor.SeasonalColors.july, UIColor.SeasonalColors.august, UIColor.SeasonalColors.september, UIColor.SeasonalColors.october, UIColor.SeasonalColors.november, UIColor.SeasonalColors.december]
+    var year = 2019
     var appointments: [Appointment] = []
     
     let ref = Database.database().reference()
+    let userDefaults = UserDefaults()
     
     let floatingScrollBtn: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 55, height: 55))
@@ -33,7 +34,20 @@ class MasterCalViewController: UIViewController {
         button.layer.shadowRadius = 5
         button.layer.masksToBounds = false
         button.isHidden = true
+        
         return button
+    }()
+    
+    let yearInputField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.font = UIFont(name: "Hiragino Sans W3", size: 25)
+        textField.textColor = UIColor.ATColors.lightRed
+        textField.keyboardType = .numberPad
+        textField.textAlignment = .center
+        textField.addDoneCancelToolbar()
+
+        return textField
     }()
 
     @IBOutlet weak var calendarTableView: UITableView!
@@ -43,13 +57,20 @@ class MasterCalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //showSections()
+        
+        yearInputField.delegate = self
         yearLabel.text = String(year)
         rightArrowButton.customizeBGImage(color: UIColor.darkGray)
         leftArrowButton.customizeBGImage(color: UIColor.darkGray)
         calendarTableView.register(CalendarHeaderCell.self, forCellReuseIdentifier: "calendarHeaderCell")
         calendarTableView.register(CalendarCell.self, forCellReuseIdentifier: "calendarCell")
-      
+        calendarTableView.allowsSelection = false
+        
+        yearLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleYearTap)))
+        yearLabel.isUserInteractionEnabled = true
+        
+        addTapToResign(view: self.view)
+        addTapToResign(view: calendarTableView)
         
         floatingScrollBtn.addTarget(self, action: #selector(scrollToBottom), for: .touchUpInside)
         self.view.addSubview(floatingScrollBtn)
@@ -57,27 +78,35 @@ class MasterCalViewController: UIViewController {
         
         let navBar = navigationController?.navigationBar
         navBar?.tintColor = UIColor.darkGray
-        navBar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name:"Lato-Medium", size: 17)!, .foregroundColor: UIColor.darkGray]
+        navBar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name:"Lato-Medium", size: 20)!, .foregroundColor: UIColor.darkGray]
         navigationItem.title = "Master Calendar"
         navigationItem.rightBarButtonItem = nil
         yearLabel.textColor = UIColor.ATColors.lightRed
         
-        
          queryAppts()
-        //getSubString(dateStr: "20010101")
-//        self.view.layoutIfNeeded()
-//        print(calendarTableView.contentSize.height)
-//        print(calendarTableView.frame.size.height)
-//        print(calendarTableView.frame.height)
-//        if calendarTableView.contentSize.height > calendarTableView.frame.size.height {
-//            floatingScrollBtn.isHidden = false
-//        }
-//
-        
-        
-        // Do any additional setup after loading the view.
     }
     
+    
+    @objc func handleYearTap() {
+        instantiateYearInputField()
+        yearInputField.becomeFirstResponder()
+    }
+    
+    func instantiateYearInputField() {
+        view.addSubview(yearInputField)
+        
+        yearInputField.topAnchor.constraint(equalTo: yearLabel.topAnchor).isActive = true
+        yearInputField.bottomAnchor.constraint(equalTo: yearLabel.bottomAnchor).isActive = true
+        yearInputField.leadingAnchor.constraint(equalTo: yearLabel.leadingAnchor).isActive = true
+        yearInputField.trailingAnchor.constraint(equalTo: yearLabel.trailingAnchor).isActive = true
+        
+        yearLabel.isHidden = true
+        yearLabel.isEnabled = false
+        rightArrowButton.isEnabled = false
+        leftArrowButton.isEnabled = false
+    }
+    
+   
     @objc func scrollToBottom() {
         calendarTableView.scrollRectToVisible(CGRect(x: 0, y: calendarTableView.contentSize.height - calendarTableView.frame.height, width: calendarTableView.frame.size.width, height: calendarTableView.frame.size.height ), animated: true)
     }
@@ -90,27 +119,27 @@ class MasterCalViewController: UIViewController {
         floatingScrollBtn.widthAnchor.constraint(equalTo: floatingScrollBtn.heightAnchor).isActive = true
     }
     
-    
     @IBAction func leftArrowWasTapped(_ sender: Any) {
         year -= 1
         yearLabel.text = String(year)
-         queryAppts()
+        queryAppts()
     }
+    
+    // something going wrong here with loading dates
     
     @IBAction func rightArrowWasTapped(_ sender: Any) {
         year += 1
         yearLabel.text = String(year)
         queryAppts()
-        
     }
     
     func queryAppts(){
         appointments.removeAll()
         let yearStart = String(year) + "0101"
         let yearEnd = String(year) + "1231"
-    
-        
-        ref.child("appointment").queryOrdered(byChild: "date").queryStarting(atValue: yearStart).queryEnding(atValue: yearEnd).observe(.value, with: { snapshot in
+        let currentUID = userDefaults.value(forKey: "uid") as! String
+        let userRef = ref.child("users").child(currentUID)
+        userRef.child("appointment").queryOrdered(byChild: "date").queryStarting(atValue: yearStart).queryEnding(atValue: yearEnd).observe(.value, with: { snapshot in
             for child in snapshot.children {
                 if let snapshot = child as? DataSnapshot,
                     let appt = Appointment(snapshot: snapshot) {
@@ -127,24 +156,12 @@ class MasterCalViewController: UIViewController {
         })
         
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MasterCalViewController: UITableViewDelegate, UITableViewDataSource {
    
     func numberOfSections(in tableView: UITableView) -> Int {
         return months.count
-        //maybe make a custom month object that has appts. then make array with these Month objects and use that count here if Month.appts > 0? will need to adjust any other code that uses these section #s tho.
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -159,42 +176,15 @@ extension MasterCalViewController: UITableViewDelegate, UITableViewDataSource {
         let headerCell = tableView.dequeueReusableCell(withIdentifier:"calendarHeaderCell") as! CalendarHeaderCell
         headerCell.headerLabel.text = months[section]
         
-        //headerCell.colorOverlay.backgroundColor = overlayColors[section]
-        //for i in 0...months.count {
-//            if tableView.numberOfRows(inSection: section) > 0 {
-////                headerCell.isHidden = false
-////                print(headerCell.headerLabel.text)
-//                return headerCell
-//
-////                headerCell.isHidden = true
-//            }
-//            /*if tableView(tableView, numberOfRowsInSection: i) > 0 {
-//                headerCell?.isHidden = false
-//                print(headerCell?.headerLabel.text!)
-//            } else {
-//                calendarTableView.headerView(forSection: i)?.isHidden = true
-//                headerCell?.isHidden = true
-//            }
-//            if calendarTableView.headerView(forSection: i)?.isHidden == true {
-//                print("section \(i) is hidden")
-//            }*/
-//        //}
         return headerCell
     }
-    
-    
-    /*func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return months[section]
-    }*/
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
         
     }
     
-    //slight issue - dates for months out of visible range dont show up until you scroll, so they are very easy to miss if you're looking
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
         var dates: [Appointment] = []
         dates.removeAll()
         
@@ -248,7 +238,7 @@ extension MasterCalViewController: UITableViewDelegate, UITableViewDataSource {
         let range = startIdx..<endIdx
         let subStr = dateStr[range]
         let convertedSubStr = Int(subStr)
-        //print(String(describing: convertedSubStr))
+
         return convertedSubStr!
     }
     
@@ -260,14 +250,62 @@ extension MasterCalViewController: UITableViewDelegate, UITableViewDataSource {
         dateFormatter.dateFormat = "yyyyMMdd"
         let dateFromString = dateFormatter.date(from: dateString)
         return dateFromString! // need some error handling in case date is nil. ask leah :)
-        
     }
+    
     func dateToString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let dateString = dateFormatter.string(from: date)
         return dateString
     }
+}
+
+extension MasterCalViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == yearInputField {
+            textField.text = ""
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == yearInputField {
+            if textField.text!.count == 4 {
+                year = Int(textField.text!)!
+                yearLabel.text = String(year)
+                lockDateAndReload(textField: textField)
+                queryAppts()
+                yearLabel.isHidden = false
+                textField.removeFromSuperview()
+                rightArrowButton.isEnabled = true
+                leftArrowButton.isEnabled = true
+                yearLabel.isEnabled = true
+            } else {
+                textField.removeFromSuperview()
+                yearLabel.isHidden = false
+                yearLabel.isEnabled = true
+                rightArrowButton.isEnabled = true
+                leftArrowButton.isEnabled = true
+            } // could add more input handling later to make it easier to test for invalid or unlikely dates (e.g. 1066)
+        }
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        lockDateAndReload(textField: textField)
+        return true
+    }
     
+    //maybe rename this method or even make textfield extension since it's just dismissing keyboard now
+    func lockDateAndReload(textField: UITextField) {
+        textField.resignFirstResponder()
+    }
+    
+    //to handle tapping off of textfield to dismiss keyboard
+        // not noticeable to user but each tap on view also requeries dB (including tap on 'floating' button)
+    func addTapToResign(view: UIView) {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapResign))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func handleTapResign() {
+        lockDateAndReload(textField: yearInputField)
+    }
 }

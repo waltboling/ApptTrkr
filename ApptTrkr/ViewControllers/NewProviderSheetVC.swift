@@ -14,16 +14,25 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var providerTypeTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
-    @IBOutlet weak var phoneTextField: FormattedTextField!
+    @IBOutlet weak var phoneTextField: FormattedTextField! {
+        didSet {
+            phoneTextField.addDoneCancelToolbar()
+        }
+    }
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
-    @IBOutlet weak var faxTextField: FormattedTextField!
+    @IBOutlet weak var faxTextField: FormattedTextField! {
+        didSet {
+            faxTextField.addDoneCancelToolbar()
+        }
+    }
     @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var providerThumbnail: UIButton!
     @IBOutlet weak var cancelBtn: UIBarButtonItem!
     @IBOutlet weak var doneBtn: UIBarButtonItem!
+    
     //labels
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -51,9 +60,13 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
     let ref = Database.database().reference()
     let textViewPlaceholder = "Add notes here..."
     var imageURL = ""
+    var userDefaults = UserDefaults()
+    var currentUID: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
         configureIcons()
         providerThumbnail.layer.cornerRadius = providerThumbnail.frame.height / 2
@@ -69,6 +82,7 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
         notesTextView.text = textViewPlaceholder
         notesTextView.textColor = UIColor.lightGray
         notesTextView.backgroundColor = UIColor.ATColors.white
+        notesTextView.font = UIFont.systemFont(ofSize: 17)
     
         notesTextView.layer.cornerRadius = 3
         
@@ -77,7 +91,7 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
         phoneTextField.formatting = .phoneNumber
         faxTextField.formatting = .phoneNumber
         
-        // Do any additional setup after loading the view.
+        view.addGestureRecognizer(tap)
     }
     
     
@@ -86,9 +100,15 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
     }
     
     @IBAction func doneBtnTapped(_ sender: Any) {
+        currentUID = userDefaults.value(forKey: "uid") as? String
         if !testForEmpty(textfield: (nameTextField)) || !testForEmpty(textfield: providerTypeTextField) {
-            let svcProvider = ServiceProvider(name: nameTextField.text ?? "", type: providerTypeTextField.text ?? "", website: websiteTextField.text ?? "", phoneNumber: phoneTextField.text ?? "", email: emailTextField.text ?? "", address: addressTextField.text ?? "", fax: faxTextField.text ?? "", notes: notesTextView.text ?? "", imageURL: imageURL)
-            let childRef = ref.child("service-provider").childByAutoId()
+            var note = ""
+            if notesTextView.text != "" || notesTextView.text != self.textViewPlaceholder {
+                note = notesTextView.text
+            }
+            let svcProvider = ServiceProvider(name: nameTextField.text ?? "", type: providerTypeTextField.text ?? "", website: websiteTextField.text ?? "", phoneNumber: phoneTextField.text ?? "", email: emailTextField.text ?? "", address: addressTextField.text ?? "", fax: faxTextField.text ?? "", notes: note, imageURL: imageURL)
+            let userRef = ref.child("users").child(currentUID)
+            let childRef = userRef.child("service-provider").childByAutoId()
             let provider = [
                 "name": svcProvider.name,
                 "type": svcProvider.type,
@@ -119,23 +139,10 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
             return false
         }
     }
-    /*override func viewDidDisappear(_ animated: Bool) {
-        let svcProvider = ServiceProvider(name: nameTextField.text ?? "", type: providerTypeTextField.text ?? "", website: websiteTextField.text ?? "", phoneNumber: phoneTextField.text ?? "", email: emailTextField.text ?? "", address: addressTextField.text ?? "", fax: faxTextField.text ?? "", notes: notesTextView.text ?? "")
-        let childRef = ref.child("service-provider").childByAutoId()
-        let provider = [
-            "name": svcProvider.name,
-            "type": svcProvider.type,
-            "address": svcProvider.address,
-            "email": svcProvider.email,
-            "phone": svcProvider.phoneNumber,
-            "fax": svcProvider.fax,
-            "website": svcProvider.website,
-            "notes": svcProvider.notes
-        ]
-        
-        childRef.setValue(provider)
-        
-    }*/
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
     
     func configureTextInputs() {
         nameTextField.delegate = self
@@ -183,25 +190,25 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
         case phoneTextField:
             scrollView.setContentOffset(CGPoint(x: 0, y: 150), animated: true)
         case emailTextField:
-            scrollView.setContentOffset(CGPoint(x: 0, y: 230), animated: true)
+            scrollView.setContentOffset(CGPoint(x: 0, y: 250), animated: true)
         case addressTextField:
-             scrollView.setContentOffset(CGPoint(x: 0, y: 290), animated: true)
+             scrollView.setContentOffset(CGPoint(x: 0, y: 310), animated: true)
         case faxTextField:
-            scrollView.setContentOffset(CGPoint(x: 0, y: 330), animated: true)
+            scrollView.setContentOffset(CGPoint(x: 0, y: 350), animated: true)
         default:
             scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        scrollView.setContentOffset(CGPoint(x: 0, y: -45), animated: true)
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         for layer in textField.layer.sublayers! {
             if layer.name == "border" {
                 layer.removeFromSuperlayer()
                 break
             }
         }
-
+        
         switch textField {
         case nameTextField: //not quite working to handle empty yet
             if !testForEmpty(textfield: textField){
@@ -211,8 +218,43 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
             if !testForEmpty(textfield: textField) {
                 typeHeaderLabel.text = providerTypeTextField.text
             }
+        case phoneTextField:
+            textField.resignFirstResponder()
+            emailTextField.becomeFirstResponder()
+        case faxTextField:
+            textField.resignFirstResponder()
+            notesTextView.becomeFirstResponder()
         default:
             break
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        switch textField {
+            case nameTextField:
+                providerTypeTextField.becomeFirstResponder()
+                return true
+            case providerTypeTextField:
+                websiteTextField.becomeFirstResponder()
+                return true
+            case websiteTextField:
+                phoneTextField.becomeFirstResponder()
+                return true
+            case phoneTextField:
+                emailTextField.becomeFirstResponder()
+                return true
+            case emailTextField:
+                addressTextField.becomeFirstResponder()
+                return true
+            case addressTextField:
+                faxTextField.becomeFirstResponder()
+                return true
+            case faxTextField:
+                notesTextView.becomeFirstResponder()
+                return true
+            default:
+            return true
         }
     }
     
@@ -233,10 +275,8 @@ class NewProviderSheetVC: UIViewController, UITextViewDelegate, UITextFieldDeleg
             notesTextView.text = textViewPlaceholder
             notesTextView.textColor = UIColor.gray
         }
+        textView.resignFirstResponder()
     }
-    
-        
-
 }
 
 extension NewProviderSheetVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

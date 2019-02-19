@@ -29,9 +29,12 @@ class ApptViewController: UIViewController {
     let ref = Database.database().reference()
     var appointments: [Appointment] = []
     var indexTracker = 0
+    let userDefaults = UserDefaults()
     
     override func viewWillAppear(_ animated: Bool) {
-        let query = ref.child("appointment").queryOrdered(byChild: "date")
+        let currentUID = userDefaults.value(forKey: "uid") as! String
+        let userRef = ref.child("users").child(currentUID)
+        let query = userRef.child("appointment").queryOrdered(byChild: "date")
         // query orders dates properly. need to add button to reverse them - just use array method reverse() 
         query.observe(.value, with: { snapshot in
             var newAppointments: [Appointment] = []
@@ -174,9 +177,11 @@ extension ApptViewController: UITableViewDataSource, UITableViewDelegate {
         //cell.detailTextLabel?.textColor = UIColor(red: 0.39, green: 0.49, blue: 0.575, alpha: 1.0)
         //cell.dateLabel.textColor = UIColor.ATColors.darkBlue
         if appt.notes == "" {
-            cell.noteBtn.isHidden = true
+            //cell.noteBtn.isHidden = true
+            cell.noteBtn.customizeFGImage(color: .gray)
+            cell.noteBtn.isEnabled = false
         } else {
-            cell.noteBtn.isHidden = false
+            cell.noteBtn.isEnabled = true
         }
         cell.noteBtn.addTarget(cell, action: #selector(cell.noteBtnTap), for: .touchUpInside)
         cell.noteTapAction = {
@@ -259,7 +264,9 @@ extension ApptViewController: UIImagePickerControllerDelegate, UINavigationContr
         var selectedImageFromPicker: UIImage?
         let uniqueStr = UUID().uuidString
         let storageRef = Storage.storage().reference().child("\(uniqueStr).png")
-        let providerDBRef = Database.database().reference().child("service-provider")
+        let currentUID = userDefaults.value(forKey: "uid") as! String
+        let userRef = Database.database().reference().child("users").child(currentUID)
+        let providerDBRef = userRef.child("service-provider")
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] {
             selectedImageFromPicker = editedImage as? UIImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] {

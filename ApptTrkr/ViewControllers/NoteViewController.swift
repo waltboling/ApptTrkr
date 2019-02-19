@@ -25,7 +25,7 @@ class NoteViewController: UIViewController {
         noteTextView.isEditable = false
         noteTextView.dataDetectorTypes = .all
         
-        noteTextView.layer.cornerRadius = 3
+        noteTextView.layer.cornerRadius = 5
         noteTextView.backgroundColor = UIColor.ATColors.white
         noteTextView.textColor = UIColor.ATColors.midBlue
         

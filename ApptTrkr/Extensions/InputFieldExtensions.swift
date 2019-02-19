@@ -17,11 +17,13 @@ extension UITextField {
         let toolbar: UIToolbar = UIToolbar()
         
         toolbar.barStyle = .default
-        toolbar.items = [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
-            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
-        ]
+        //toolbar.barTintColor = UIColor.ATColors.lightBlue
+        let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action)
+        cancelBtn.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name:"Lato-Bold", size: 18)!, .foregroundColor: UIColor.ATColors.lightRed], for: .normal)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        doneBtn.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name:"Lato-Bold", size: 18)!, .foregroundColor: UIColor.ATColors.midBlue], for: .normal)
+        toolbar.items = [cancelBtn, flexSpace, doneBtn]
         toolbar.sizeToFit()
         
         self.inputAccessoryView = toolbar

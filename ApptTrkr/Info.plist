@@ -9,6 +9,7 @@
 		<string>Lato-Regular.ttf</string>
 		<string>Lato-Light.ttf</string>
 		<string>Lato-Medium.ttf</string>
+		<string>Lato-Bold.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

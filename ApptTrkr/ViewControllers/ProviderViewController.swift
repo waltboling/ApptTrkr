@@ -38,7 +38,7 @@ class ProviderViewController: UIViewController {
     var address: String?
     var notes: String?
     var currentKey: String?
-    //var prettifiedString: String?
+    let userDefaults = UserDefaults()
     
     override func viewWillAppear(_ animated: Bool) {
         //providerThumbnail.isHidden = true
@@ -290,7 +290,9 @@ extension ProviderViewController: UIImagePickerControllerDelegate, UINavigationC
         var selectedImageFromPicker: UIImage?
         let uniqueStr = UUID().uuidString
         let storageRef = Storage.storage().reference().child("\(uniqueStr).png")
-        let providerDBRef = Database.database().reference().child("service-provider")
+        let currentUID = userDefaults.value(forKey: "uid") as! String
+        let userRef = Database.database().reference().child("users").child(currentUID)
+        let providerDBRef = userRef.child("service-provider")
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] {
             selectedImageFromPicker = editedImage as? UIImage
         } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] {
