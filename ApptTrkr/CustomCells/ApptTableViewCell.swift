@@ -31,12 +31,9 @@ class ApptTableViewCell: UITableViewCell {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.imageView?.image = UIImage(named: "notesIcon")
-        //button.customizeFGImage(color: UIColor(red: 0.38, green: 0.584, blue: 0.847, alpha: 1.0))
         button.customizeFGImage(color: UIColor.ATColors.lightBlue)
         button.clipsToBounds = true
         button.contentMode = .scaleAspectFill
-        //button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        
         return button
     }()
     
@@ -62,19 +59,14 @@ class ApptTableViewCell: UITableViewCell {
         
         dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
         dateLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        //dateLabel.bottomAnchor.constraint(equalTo: providerName.topAnchor, constant: -5).isActive = true
         
         noteBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: 34).isActive = true
         noteBtn.leftAnchor.constraint(equalTo: apptTitle.leftAnchor, constant: 10).isActive = true
         noteBtn.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -5).isActive = true
         noteBtn.heightAnchor.constraint(equalTo: noteBtn.widthAnchor).isActive = true
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

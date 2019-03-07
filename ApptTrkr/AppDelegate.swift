@@ -24,36 +24,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate, GIDSignI
     var authUI : FUIAuth?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-       
         
         FirebaseApp.configure()
+        
         authUI = FUIAuth.defaultAuthUI()
         authUI!.delegate = self
         
         self.authUI!.providers = providers
-    
         
-        
-        
-        // Override point for customization after application launch.
+        let db = Database.database()
+        db.isPersistenceEnabled = true
         
         //Google Sign in:
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        //setting rootVC and onboarding on user's first launch
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let mainSB = UIStoryboard(name: "Main", bundle: nil)
+        var initialVC = mainSB.instantiateViewController(withIdentifier: "Onboarding")
+        let userDefaults = UserDefaults.standard
+        
+        if userDefaults.bool(forKey: "onboardingComplete") {
+            if Auth.auth().currentUser != nil {
+                initialVC = (mainSB.instantiateViewController(withIdentifier: "MainTBC") as? UITabBarController)!
+            } else {
+                initialVC = mainSB.instantiateViewController(withIdentifier: "SignInViewController")
+            }
+        }
+        
+        window?.rootViewController = initialVC
+        window?.makeKeyAndVisible()
+        
+        AppReviewManager.incrementAppOpenedCount()
+        
         return true
     }
-    
-    //firebase authentication for google/fb:
-    /*func application(_ app: UIApplication, open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        }
-        // other URL handling goes here.
-        return false
-    }*/
     
     //Google sign in methods:
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -62,40 +68,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate, GIDSignI
                                                  annotation: options[UIApplication.OpenURLOptionsKey.annotation])
     }
     
+    //the following GID delegate methods are handled between here and the SignInVC
+    //doesnt seem that the didSignInFor: code is hitting here but is in SignInVC
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
         if let error = error {
-            print("Failed to log into Google", error)
+            //print("Failed to log into Google", error)
             return
         }
-        
-        print("Successfully logged into Google", user)
-        
+        //print("Successfully logged into Google", user)
+    
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
-        // ...
+
         Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
             if let error = error {
-                print("Failed to create a Firebase user with Google account: ", error)
+                //print("Failed to create a Firebase user with Google account: ", error)
                 return
             }
             // User is signed in
-            print("Succcessfully logged into Firebase with Google", user.userID)
-            
-            // ...
+            //print("Successfully logged into Firebase with Google", user.userID)
         }
     }
     
-    
-    
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
+ }
     
-
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -118,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate, GIDSignI
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         GIDSignIn.sharedInstance()?.signOut()
-        print("did try to sign out user")
+        //print("did try to sign out user")
     }
 
 

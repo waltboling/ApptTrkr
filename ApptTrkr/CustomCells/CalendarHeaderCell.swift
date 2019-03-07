@@ -55,7 +55,7 @@ class CalendarHeaderCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        var headerOffset: CGFloat = 0
+        let headerOffset: CGFloat = 0
         
         headerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         headerLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -76,21 +76,7 @@ class CalendarHeaderCell: UITableViewCell {
         colorOverlay.leftAnchor.constraint(equalTo: self.leftAnchor, constant: headerOffset).isActive = true
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

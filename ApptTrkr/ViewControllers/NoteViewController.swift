@@ -19,17 +19,15 @@ class NoteViewController: UIViewController {
         if let note = passedNote {
             noteTextView.text = note
         } else {
-            noteTextView.text = "This is a test"
+            noteTextView.text = "Error loading note..."
         }
+        
         noteTextView.isUserInteractionEnabled = true
         noteTextView.isEditable = false
         noteTextView.dataDetectorTypes = .all
-        
         noteTextView.layer.cornerRadius = 5
         noteTextView.backgroundColor = UIColor.ATColors.white
         noteTextView.textColor = UIColor.ATColors.midBlue
-        
-        // Do any additional setup after loading the view.
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -39,16 +37,4 @@ class NoteViewController: UIViewController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

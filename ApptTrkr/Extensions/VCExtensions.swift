@@ -8,6 +8,8 @@
 
 import UIKit
 
+var progressWheel: UIActivityIndicatorView?
+
 extension UIViewController {
     
     //will change this some later
@@ -28,7 +30,7 @@ extension UIViewController {
         floatingBtn.customizeBGImage(color: UIColor.white)
         self.view.addSubview(floatingBtn)
         
-        floatingBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100).isActive = true
+        floatingBtn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 110).isActive = true
         floatingBtn.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20).isActive = true
         floatingBtn.heightAnchor.constraint(equalToConstant: 35).isActive = true
         floatingBtn.widthAnchor.constraint(equalTo: floatingBtn.heightAnchor).isActive = true
@@ -38,14 +40,29 @@ extension UIViewController {
     func showAlert(title: String, message: String, buttonString: String) {
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let okAction = UIAlertAction(title: buttonString, style: .default, handler: nil)
-            //let settingsAction = UIAlertAction(title: "Settings", style: .default) {(action) in self.openSettings()}
             
             alertController.addAction(okAction)
-            //alertController.addAction(settingsAction)
-            
+        
             DispatchQueue.main.async {
                 self.present(alertController, animated: true, completion: nil)
             }
         }
     
+    func showSpinner(view: UIView) -> UIActivityIndicatorView {
+        let spinner = UIActivityIndicatorView()
+        spinner.hidesWhenStopped = true
+        spinner.style = .whiteLarge
+        spinner.center = view.center
+        view.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return spinner
+    }
+}
+
+extension UIActivityIndicatorView {
+    func dismissSpinner() {
+        self.stopAnimating()
+        self.removeFromSuperview()
+    }
 }

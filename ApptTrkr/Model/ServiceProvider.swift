@@ -59,6 +59,5 @@ class ServiceProvider {
         self.fax = fax
         self.notes = notes
         self.imageURL = imageURL
-        
     }
 }

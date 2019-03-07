@@ -12,9 +12,7 @@ import Firebase
 class Appointment {
     var title: String
     var type: String
-    // var date: Date // Firebase doesnt store dates, so i changed it to string for time being
     var date: String
-    //var provider: ServiceProvider // switched to store key only. will see if this works
     var providerKey: String
     var providerName: String
     var notes: String
@@ -48,5 +46,4 @@ class Appointment {
         self.providerName = providerName
         self.notes = notes
     }
-    
 }

@@ -21,7 +21,6 @@ class MainCell: UITableViewCell {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setBackgroundImage(UIImage(named: "apptListIcon"), for: .normal)
-        //button.addTarget(button, action: #selector(buttonAction), for: .touchUpInside)
         return button
     }()
     
@@ -43,6 +42,7 @@ class MainCell: UITableViewCell {
         return label
     }()
     
+    
     var providerTapAction: (() -> Void)? = nil
     var apptTapAction: (() -> Void)? = nil
     
@@ -58,28 +58,19 @@ class MainCell: UITableViewCell {
         }
     }
     
-    /*@objc func buttonAction() {
-        tapAction?(self)
-    }*/
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(providerBtn)
         self.addSubview(apptBtn)
         self.addSubview(providerNameLabel)
         self.addSubview(providerTypeLabel)
-        //apptBtn.addTarget(apptBtn, action: #selector(buttonAction), for: .touchUpInside)
-        //self.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
     }
     
     override func layoutSubviews() {
-        //let spacingConstantSmall: CGFloat = 15.0
         let spacingConstantMed: CGFloat = 25.0
         
         apptBtn.customizeBGImage(color: UIColor.ATColors.midBlue)
         providerBtn.customizeBGImage(color: UIColor.ATColors.midBlue)
-        
-        //layoutButtons(image: UIImage(named: "calendarIcon")!, button: apptBtn)
-        //layoutButtons(image: UIImage(named: "providerIcon")!, button: providerBtn)
         
         apptBtn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         apptBtn.topAnchor.constraint(equalTo: self.topAnchor, constant: spacingConstantMed + 4).isActive = true
@@ -118,22 +109,4 @@ class MainCell: UITableViewCell {
         button.layoutIfNeeded()
         button.subviews.first?.contentMode = .scaleAspectFit
     }
-    
-    
-    
-    
-    
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

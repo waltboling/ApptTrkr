@@ -11,7 +11,6 @@ import UIKit
 
 public enum TextFieldFormatting {
     case uuid
-    case socialSecurityNumber
     case phoneNumber
     case custom
     case noFormatting
@@ -59,10 +58,6 @@ public class FormattedTextField: UITextField {
     public var formatting : TextFieldFormatting = .noFormatting {
         didSet {
             switch formatting {
-                
-            case .socialSecurityNumber:
-                self.formattingPattern = "***-**-****"
-                self.replacementChar = "*"
                 
             case .phoneNumber:
                 self.formattingPattern = "(***)***-****"

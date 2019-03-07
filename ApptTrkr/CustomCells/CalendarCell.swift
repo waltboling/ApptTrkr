@@ -23,7 +23,6 @@ class CalendarCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = UIColor.ATColors.midBlue
-
         return label
     }()
     
@@ -33,7 +32,6 @@ class CalendarCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 18)
         label.textColor = UIColor.ATColors.midBlue
         return label
-        
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -57,16 +55,4 @@ class CalendarCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

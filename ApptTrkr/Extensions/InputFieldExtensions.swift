@@ -17,7 +17,6 @@ extension UITextField {
         let toolbar: UIToolbar = UIToolbar()
         
         toolbar.barStyle = .default
-        //toolbar.barTintColor = UIColor.ATColors.lightBlue
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action)
         cancelBtn.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name:"Lato-Bold", size: 18)!, .foregroundColor: UIColor.ATColors.lightRed], for: .normal)
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
@@ -47,11 +46,12 @@ extension UITextView {
         let toolbar: UIToolbar = UIToolbar()
         
         toolbar.barStyle = .default
-        toolbar.items = [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil),
-            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
-        ]
+        let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: onCancel.target, action: onCancel.action)
+        cancelBtn.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name:"Lato-Bold", size: 18)!, .foregroundColor: UIColor.ATColors.lightRed], for: .normal)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+        doneBtn.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name:"Lato-Bold", size: 18)!, .foregroundColor: UIColor.ATColors.midBlue], for: .normal)
+        toolbar.items = [cancelBtn, flexSpace, doneBtn]
         toolbar.sizeToFit()
         
         self.inputAccessoryView = toolbar
@@ -65,10 +65,37 @@ extension UITextView {
     @objc func didCancelInput() {
         self.resignFirstResponder()
     }
+    
+    /*func makePhoneNumberTextView() -> FormattedTextView {
+        let frmtdTextView = self as! FormattedTextView
+        frmtdTextView.formatting = .phoneNumber
+        return frmtdTextView
+    }*/
+    
 }
 
 extension String {
     public func toPhoneNumber() -> String {
         return self.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
     }
+    
+    public func testForEmpty() -> Bool {
+        let stringToTest = self.trimmingCharacters(in: .whitespaces)
+        if stringToTest.isEmpty == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var htmlToAttributedString: NSAttributedString? {
+        do {
+            return try NSAttributedString(data: Data(utf8), options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+    
+    var unicodes: [UInt32] { return unicodeScalars.map{$0.value} }
 }

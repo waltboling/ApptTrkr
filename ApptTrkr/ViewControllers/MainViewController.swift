@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import SwiftKeychainWrapper
 
-class MainViewController: UIViewController, UIScrollViewDelegate {
+class MainViewController: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
     
     private let headerViewCutaway: Float = 40.0
     private var databaseHandle: DatabaseHandle!
@@ -22,13 +23,14 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     
     var providers: [ServiceProvider] = []
     var providerKeys: [String] = []
-    //var imageView = UIImageView()
     let ref = Database.database().reference()
     var indexTracker: Int?
     var passedUID: String?
-    //var passedUserEmail: String?
     var userDefaults = UserDefaults()
-    
+    let searchController = UISearchController(searchResultsController: nil)
+    var unFilteredPros: [ServiceProvider] = []
+    var providerImage = UIImage()
+
     override func viewWillAppear(_ animated: Bool) {
         let userRef = ref.child("users").child(passedUID!)
         userRef.child("service-provider").observe(.value, with: { snapshot in
@@ -42,92 +44,106 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
                     newProviderKeys.append(snapshot.key)
                 }
             }
+            self.unFilteredPros = newProviders
             self.providers = newProviders
             self.providerKeys = newProviderKeys
             self.mainTableView.reloadData()
         })
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        passedUID = userDefaults.value(forKey: "uid") as? String
-        print(passedUID)
-        //let provID = Auth.auth().currentUser?.providerID
-       // print(passedUserEmail)
-       // print(passedUID)
-        //so - the data is passing correctly but the problem is that the user cant write into the database yet and permission is denied when trying to create the users node
-        /*let usersReference = ref.child("users").childByAutoId()
-        let userInfo = [
-            "userEmail": passedUserEmail,
-            "uid": passedUID
-        ]
-        print(userInfo)
-        usersReference.setValue(userInfo)*/
         
+        AppReviewManager.checkAndAskForReview()
+
+        if let uid = KeychainWrapper.standard.string(forKey: "uid") {
+            passedUID = uid
+        }
+        
+        tabBarController?.delegate = self
+        
+        mainTableView.register(MainCell.self, forCellReuseIdentifier: "Cell")
+
         mainTableView.allowsSelection = false
         mainTableView.contentInset = UIEdgeInsets(top: ApptTrkrLogoView.bounds.height, left: 0, bottom: 0, right: 0)
-        //mainTableView.contentOffset = CGPoint(x: 0, y: -ApptTrkrLogoView.frame.height)
-     
-        
         view.backgroundColor = UIColor(red: 0.96, green: 0.96, blue: 0.96, alpha: 1.0)
         floatButton(target: self, action: #selector(handleLogout), forEvent: .touchUpInside)
         
+        configureNavBar()
+        configureSearchBar()
+    }
+    
+    //MARK: -Configure UI
+    
+    func configureNavBar() {
+        let navBar = self.navigationController?.navigationBar
         
-        mainTableView.register(MainCell.self, forCellReuseIdentifier: "Cell")
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddProvider))
         navigationItem.rightBarButtonItem?.tintColor = UIColor.ATColors.lightBlue
-        
-        
-        
-        let navBar = self.navigationController?.navigationBar
-        //navBar?.barTintColor = UIColor.ATColors.white
+    
         navBar?.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name:"Lato-Medium", size: 20)!, .foregroundColor: UIColor.darkGray]
         navigationItem.title = "Providers"
-        
-        
     }
+    
+    func configureSearchBar() {
+        providers = unFilteredPros
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        let tabBarIndex = tabBarController.selectedIndex
+        
+        if tabBarIndex == 0 {
+            self.mainTableView.setContentOffset(CGPoint(x: 0, y: -200), animated: true)
+        }
+    }
+    
+    //MARK: -Handler methods
     
     @objc func handleAddProvider(_ sender: UIBarButtonItem) {
         let storyboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NewProviderSheet")
         viewController.modalPresentationStyle = .popover
         let popover: UIPopoverPresentationController = viewController.popoverPresentationController!
-        //popover.barButtonItem = sender
         popover.delegate = self
         present(viewController, animated: true, completion:nil)
     }
     
-    //code to log out of FB with correct provider. so far it WORKS!
+    //log out of Firebase with correct provider
     @objc func handleLogout() {
-        //let signInVC = SignInViewController()
-        //would like to show alert to make sure user wants to logout, but would need to make signout code the action performed by the alert button
-        //showAlert(title: "Logout", message: "Are you ready to end your session?", buttonString: "Logout")
         let auth = Auth.auth()
         let providerData = auth.currentUser?.providerData
 
         for data in providerData! {
+           let signInVC = storyboard?.instantiateViewController(withIdentifier: "SignInViewController")
             switch data.providerID {
             case "google.com":
                 GIDSignIn.sharedInstance()?.signOut()
-                print("signing out google user")
+                //print("signing out google user")
                 do {
                     try auth.signOut()
-                    print("signing google user out of FB")
-                    dismiss(animated: true, completion: nil)
+                   // print("signing google user out of FB")
+                    if let vc = signInVC {
+                        present(vc, animated: true, completion: nil)
+                    }
                 } catch let signOutError as NSError {
-                    print ("Error signing out google user: \(signOutError)")
+                    //print ("Error signing out google user: \(signOutError)")
                 }
                 break
             case "password":
                 do {
                     try auth.signOut()
-                    print("signing password user out of FB")
+                    //print("signing password user out of FB")
                     AuthenticationManager.sharedInstance.loggedIn = false
-                    dismiss(animated: true, completion: nil)
+                    if let vc = signInVC {
+                        present(vc, animated: true, completion: nil)
+                    }
                 } catch let signOutError as NSError {
-                    print ("Error signing out password user: \(signOutError)")
+                    //print ("Error signing out password user: \(signOutError)")
                 }
                 break
             default:
@@ -137,13 +153,13 @@ class MainViewController: UIViewController, UIScrollViewDelegate {
     }
 }
 
+
+//MARK: -Tableview DataSource and Delegate
 extension MainViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let y = 300 - (scrollView.contentOffset.y + 300)
-        //let y = scrollView.contentOffset.y * -1
         let height = min(max(y, 60), 500)
         ApptTrkrLogoView.frame = CGRect(x: 0, y: 82, width: UIScreen.main.bounds.size.width, height: height)
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -162,45 +178,88 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainCell
         let provider = providers[indexPath.row]
-        
+        let urlString = provider.imageURL
+        if let url = URL(string: urlString) {
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                if let error = error {
+                    //print(error)
+                    return
+                } else {
+                    DispatchQueue.main.async {
+                        if let downloadedImage = UIImage(data: data!) {
+                            imageCache.setObject(downloadedImage, forKey: urlString as AnyObject)
+                        }
+                    }
+                }
+            }).resume()
+        }
         cell.providerNameLabel.text = provider.name
-        //cell.providerTypeLabel.textColor = UIColor.darkGray
         cell.providerTypeLabel.text = provider.type
-        //cell.providerTypeLabel.textColor = UIColor.lightGray
-        
-        //cell.providerBtn.addTarget(self, action: #selector(providerBtnAction), for: .touchUpInside)
-    
-        /*cell.tapAction = {
-            (cell) in print(self.mainTableView.indexPath(for: (cell))!.row)
-        }*/
         cell.apptTapAction = {
-            print(indexPath.row)
+            //print(indexPath.row)
             self.indexTracker = indexPath.row
            // self.apptBtnAction()
             self.buttonSegues(buttonType: "Appt")
         }
-        
         cell.providerTapAction = {
-            print(indexPath.row)
+            //print(indexPath.row)
             self.indexTracker = indexPath.row
             self.buttonSegues(buttonType: "Provider")
         }
-        
         cell.apptBtn.addTarget(cell, action: #selector(cell.apptButtonTap), for: .touchUpInside)
         cell.providerBtn.addTarget(cell, action: #selector(cell.providerButtonTap), for: .touchUpInside)
         
         return cell
     }
     
-    
-    /*@objc func providerBtnAction() {
-        buttonSegues(buttonType: "Provider")
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
-    @objc func apptBtnAction() {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let currentKey = providerKeys[indexPath.row]
+            let currentProvider = providers[indexPath.row]
+            let userRef = ref.child("users").child(passedUID!)
+            let providerRef = userRef.child("service-provider")
+            let imageURL = currentProvider.imageURL
+            let apptRef = userRef.child("appointment")
+            self.providers.remove(at: indexPath.row)
 
-        buttonSegues(buttonType: "Appt")
-    }*/
+            providerRef.child("\(currentKey)").removeValue { (error, ref) in
+                if error != nil {
+                    self.showAlert(title: "Oops!", message: "There was an error deleting the current provider", buttonString: "Ok")
+                    //print("error at \(currentKey)")
+                    return
+                }
+                
+                //deletes any image in storage associated with provider
+                if imageURL != "" {
+                    let storageRef = Storage.storage().reference(forURL: imageURL)
+                    storageRef.delete(completion: { (error) in
+                        if error != nil {
+                        } else {
+                        }
+                    })
+                }
+                
+                //deletes all appts associated with provider
+                apptRef.observe(.value , with: { snapshot in
+                    for child in snapshot.children {
+                        if let snapshot = child as? DataSnapshot,
+                            let appt = Appointment(snapshot: snapshot) {
+                            let apptKey = snapshot.key
+                            if appt.providerKey == currentKey {
+                                apptRef.child(apptKey).removeValue()
+                            }
+                        }
+                    }
+                })
+
+                tableView.reloadData()
+            }
+        }
+    }
     
     func buttonSegues(buttonType: String) {
         switch buttonType {
@@ -242,17 +301,18 @@ extension MainViewController: UIPopoverPresentationControllerDelegate {
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .fullScreen
     }
-    
-    /*func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
-        let navigationController = UINavigationController(rootViewController: controller.presentedViewController)
-        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(MainViewController.dismissViewController))
-        navigationController.topViewController?.navigationItem.rightBarButtonItem = doneButton
-        return navigationController
+}
+
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if searchController.searchBar.text! == "" {
+            providers = unFilteredPros
+        } else if let searchStr = searchController.searchBar.text?.lowercased() {
+            providers = unFilteredPros.filter({ (($0.name.description.lowercased().contains(searchStr)) || ($0.type.description.lowercased().contains(searchStr)))
+                //how to include more search options in same function
+            })
+        }
         
+        self.mainTableView.reloadData()
     }
-    
-    @objc func dismissViewController() {
-        self.dismiss(animated: true, completion: nil)
-        //code for reloading tableview data will go somewhere here or in viewWillAppear
-    }*/
 }
